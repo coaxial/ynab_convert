@@ -13,9 +13,9 @@ require 'byebug' if ENV['YNAB_CONVERT_DEBUG']
 module YnabConvert
   # Metadata about the gem
   class Metadata
-    def  short_desc
+    def short_desc
       puts 'An utility to convert online banking CSV files to a format that ' \
-'can be imported into YNAB 4.'
+           'can be imported into YNAB 4.'
     end
 
     def version
@@ -95,8 +95,8 @@ module YnabConvert
           puts @metadata.version
           exit
         end
-        o.string '-i', '--institution', 'name of the financial institution '\
- 'that generated the file to convert'
+        o.string '-i', '--institution', 'name of the financial institution ' \
+                                        'that generated the file to convert'
         o.string '-f', '--file', 'path to the csv file to convert'
       end
     end
@@ -134,10 +134,10 @@ module YnabConvert
     end
 
     def show_unknown_institution_message
-      warn 'Could not find any processor for the institution '\
-        "`#{@options[:institution]}'. If it's not a typo, consider "\
-        'contributing a new processor (see https://github.com/coaxial/'\
-        'ynab_convert#contributing to get started).'
+      warn 'Could not find any processor for the institution ' \
+           "`#{@options[:institution]}'. If it's not a typo, consider " \
+           'contributing a new processor (see https://github.com/coaxial/' \
+           'ynab_convert#contributing to get started).'
     end
   end
 end

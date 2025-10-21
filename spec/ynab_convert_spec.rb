@@ -13,7 +13,7 @@ RSpec.describe YnabConvert do
   end
 
   it 'has a version number' do
-    expect(YnabConvert::VERSION).not_to be nil
+    expect(YnabConvert::VERSION).not_to be_nil
   end
 
   context 'when run from the command line' do
@@ -30,8 +30,8 @@ RSpec.describe YnabConvert do
     let(:metadata) { described_class.new }
 
     it 'can show a short description' do
-      expected = 'An utility to convert online banking CSV files to a format' \
-    " that can be imported into YNAB 4.\n"
+      expected = 'An utility to convert online banking CSV files to a format ' \
+                 "that can be imported into YNAB 4.\n"
 
       expect { metadata.short_desc }.to output(expected).to_stdout
     end

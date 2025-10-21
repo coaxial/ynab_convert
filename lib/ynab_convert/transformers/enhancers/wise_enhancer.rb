@@ -8,7 +8,7 @@ module Transformers
         @api_client = APIClients::CurrencyAPI.new
         @indices = { date: 0, amount: 3, memo: 2 }
 
-        super()
+        super
       end
 
       def run(ynab_row)
@@ -32,8 +32,8 @@ module Transformers
         unless converted_amount.nil?
           enhanced_row[@indices[:amount]] = converted_amount
           # Put original amount and currency in Memo
-          enhanced_row[@indices[:memo]] = 'Original amount: '\
-            "#{metadata[:original_amount]}"
+          enhanced_row[@indices[:memo]] = 'Original amount: ' \
+                                          "#{metadata[:original_amount]}"
         end
 
         # If not, clear the metadata from the Memo field

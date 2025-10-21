@@ -14,7 +14,7 @@ RSpec.describe Transformers::Formatters::N26 do
   end
 
   it 'inherits from Formatters::Formatter' do
-    expect(n26_formatter).to be_kind_of(Transformers::Formatters::Formatter)
+    expect(n26_formatter).to be_a(Transformers::Formatters::Formatter)
   end
 
   it 'formats rows' do

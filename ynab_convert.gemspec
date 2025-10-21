@@ -25,7 +25,8 @@ Gem::Specification.new do |spec|
     'bug_tracker_uri' => 'https://github.com/coaxial/ynab_convert/issues',
     'documentation_uri' => 'https://rubydoc.info/github/coaxial/ynab_convert/master',
     'homepage_uri' => 'https://github.com/coaxial/ynab_convert',
-    'source_code_uri' => 'https://github.com/coaxial/ynab_convert'
+    'source_code_uri' => 'https://github.com/coaxial/ynab_convert',
+    'rubygems_mfa_required' => 'true'
   }
   spec.post_install_message = 'Happy budgetting!'
 
@@ -38,7 +39,7 @@ Gem::Specification.new do |spec|
     spec.metadata['source_code_uri'] = 'https://github.com/coaxial/ynab_convert'
   else
     raise 'RubyGems 2.0 or newer is required to protect against ' \
-      'public gem pushes.'
+          'public gem pushes.'
   end
 
   # Specify which files should be added to the gem when it is released.

@@ -17,7 +17,7 @@ RSpec.describe Processors::N26, :vcr do
   before { processor.to_ynab! }
 
   it 'instantiates' do
-    expect(processor).to be_kind_of(Processors::Processor)
+    expect(processor).to be_a(Processors::Processor)
   end
 
   it 'converts the statement' do

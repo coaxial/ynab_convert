@@ -9,7 +9,7 @@ module Transformers
     class N26 < Enhancer
       def initialize
         @api_client = APIClients::CurrencyAPI.new
-        super()
+        super
       end
 
       # @param row [CSV::Row] The YNAB4 formatted row to enhance
@@ -35,8 +35,8 @@ module Transformers
         enhanced_row = row.dup
         enhanced_row[amount_index] = converted_amount
         # Put original amount and currency in Memo
-        memo_line = 'Original amount: '\
-          "#{format('%<amount>.2f', amount: amount)} #{base_currency}"
+        memo_line = 'Original amount: ' \
+                    "#{format('%<amount>.2f', amount: amount)} #{base_currency}"
         enhanced_row[2] = memo_line
         enhanced_row
       end

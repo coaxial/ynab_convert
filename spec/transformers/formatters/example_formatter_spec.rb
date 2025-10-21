@@ -15,7 +15,7 @@ RSpec.describe Transformers::Formatters::Example do
   end
 
   it 'inherits from Formatter' do
-    expect(formatter).to be_kind_of(Transformers::Formatters::Formatter)
+    expect(formatter).to be_a(Transformers::Formatters::Formatter)
   end
 
   it 'formats rows' do
