@@ -30,7 +30,7 @@ RSpec.describe YnabConvert do
     let(:metadata) { described_class.new }
 
     it 'can show a short description' do
-      expected = 'An utility to convert online banking CSV files to a format ' \
+      expected = 'A utility to convert online banking CSV files to a format ' \
                  "that can be imported into YNAB 4.\n"
 
       expect { metadata.short_desc }.to output(expected).to_stdout
@@ -43,7 +43,7 @@ RSpec.describe YnabConvert do
     end
   end
 
-  describe YnabConvert::File do
+  describe YnabConvert::Converter do
     context 'with an existing file containing valid CSV' do
       let(:converted) do
         <<~ROWS
