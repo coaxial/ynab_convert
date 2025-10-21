@@ -4,6 +4,7 @@ require 'ynab_convert/version'
 require 'slop'
 require 'ynab_convert/logger'
 require 'core_extensions/string'
+require 'ynab_convert/processors'
 require 'byebug' if ENV['YNAB_CONVERT_DEBUG']
 
 # FIXME: The architecture in here is not the greatest... It should be
@@ -14,7 +15,7 @@ module YnabConvert
   # Metadata about the gem
   class Metadata
     def short_desc
-      puts 'An utility to convert online banking CSV files to a format that ' \
+      puts 'A utility to convert online banking CSV files to a format that ' \
            'can be imported into YNAB 4.'
     end
 
@@ -24,7 +25,7 @@ module YnabConvert
   end
 
   # Operations on the CSV file to convert
-  class File
+  class Converter
     include YnabLogger
 
     # @option opts [String] :file The filename or path to the file
@@ -33,14 +34,9 @@ module YnabConvert
     def initialize(opts)
       logger.debug opts.to_h
       @file = opts[:file]
-
-      begin
-        @processor = opts[:processor].new(
-          filepath: @file
-        )
-      rescue Errno::ENOENT
-        handle_file_not_found
-      end
+      @processor = opts[:processor].new(
+        filepath: @file
+      )
     end
 
     # Converts @file to YNAB4 format and writes it to disk
@@ -48,12 +44,6 @@ module YnabConvert
     def to_ynab!
       logger.debug "Processing `#{@file}' through `#{@processor.class.name}'"
       @processor.to_ynab!
-    end
-
-    private
-
-    def file_not_found_message
-      raise Errno::ENOENT, "File `#{@file}' not found or not accessible."
     end
   end
 
@@ -72,7 +62,7 @@ module YnabConvert
     end
 
     def start
-      @file = File.new opts
+      @file = Converter.new opts
       logger.debug "Using processor `#{@options[:institution]}' => #{processor}"
       @file.to_ynab!
     end

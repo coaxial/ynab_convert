@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
   spec.description   = <<~DESC
     Utility to convert CSV statements into the YNAB4 format for easier
-    transation import. Supports several banks and can easily be extended to
+    transaction import. Supports several banks and can easily be extended to
     add more.
   DESC
 
@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
     'source_code_uri' => 'https://github.com/coaxial/ynab_convert',
     'rubygems_mfa_required' => 'true'
   }
-  spec.post_install_message = 'Happy budgetting!'
+  spec.post_install_message = 'Happy budgeting!'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
