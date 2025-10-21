@@ -18,7 +18,7 @@ module Transformers
       #   (if using the :flows format)
       # @option  headers_indices [Array<Numeric>] :inflow transaction inflow (if
       #   using the :flows format)
-      def initialize(**headers_indices)
+      def initialize(headers_indices = {})
         default_values = {
           memo: [] # The Memo field tends to be empty for most institutions
         }

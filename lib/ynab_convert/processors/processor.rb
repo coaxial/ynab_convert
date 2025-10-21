@@ -18,13 +18,13 @@ module Processors
     #   converted value. See CSV::Converters.
     # @param transformers [Array<Transformers::Transformer>] The Transformers
     #   to run in sequense
-    def initialize(statement:, ynab4_file:, transformers:, converters: {})
-      @statement = statement
-      @transformers = transformers
+    def initialize(options = {})
+      @statement = options[:statement]
+      @transformers = options[:transformers]
       @validators = [::Validators::YNAB4Row]
       @uid = rand(36**8).to_s(36)
-      @ynab4_file = ynab4_file
-      register_converters(converters)
+      @ynab4_file = options[:ynab4_file]
+      register_converters(options[:converters] || {})
     end
 
     def to_ynab!
