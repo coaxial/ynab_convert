@@ -1,7 +1,7 @@
 ---
 # See https://github.com/rubocop/rubocop/blob/master/config/default.yml for all
 # options
-require:
+plugins:
   - rubocop-rake
   - rubocop-rspec
 
@@ -22,7 +22,7 @@ Metrics/BlockLength:
   Exclude:
     - Guardfile
     - ynab_convert.gemspec
-    - 'spec/**/*_spec.rb'
+    - "spec/**/*_spec.rb"
 
 Metrics/MethodLength:
   Max: 25

@@ -55,7 +55,7 @@ module YnabConvert
     def initialize
       @metadata = Metadata.new
       @options = parse_argv
-      return unless no_options_given
+      return unless no_options_given?
 
       show_usage
       exit
@@ -114,7 +114,7 @@ module YnabConvert
       processor_class_name.split('::').inject(Object) { |o, c| o.const_get c }
     end
 
-    def no_options_given
+    def no_options_given?
       @options[:institution].nil? || @options[:file].nil?
     end
 

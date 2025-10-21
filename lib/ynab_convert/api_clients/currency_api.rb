@@ -50,7 +50,8 @@ module APIClients
     # @param date [Date] The date to show in the error message
     def handle_date_out_of_bounds(date)
       error_message = "#{date} is out of the currency-api available date " \
-                      "range (#{@available_date_range[:min]}–#{@available_date_range[:max]})"
+                      "range (#{@available_date_range[:min]}–" \
+                      "#{@available_date_range[:max]})"
 
       raise Errno::EDOM, error_message
     end
