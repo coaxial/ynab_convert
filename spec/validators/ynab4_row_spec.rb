@@ -7,7 +7,7 @@ RSpec.describe Validators::YNAB4Row do
     let(:row) { ['', 'Test Payee', '', 1337.0] }
 
     it 'is invalid' do
-      expect(ynab4_row.valid?(row)).to eq(false)
+      expect(ynab4_row.valid?(row)).to be(false)
     end
   end
 

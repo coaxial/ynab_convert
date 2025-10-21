@@ -4,7 +4,7 @@ RSpec.describe Transformers::Enhancers::N26 do
   let(:enhancer) { described_class.new }
 
   it 'inherits from Enhancers::Enhancer' do
-    expect(enhancer).to be_kind_of(Transformers::Enhancers::Enhancer)
+    expect(enhancer).to be_a(Transformers::Enhancers::Enhancer)
   end
 
   context 'with a CSV::Row' do
@@ -16,7 +16,7 @@ RSpec.describe Transformers::Enhancers::N26 do
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true, converters:
                   %i[numeric] }
-      CSV.parse(csv, options)
+      CSV.parse(csv, **options)
     end
     let(:enhanced) do
       [

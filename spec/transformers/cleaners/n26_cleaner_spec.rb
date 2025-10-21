@@ -20,7 +20,7 @@ RSpec.describe Transformers::Cleaners::N26 do
   end
 
   it 'inherits from Cleaner' do
-    expect(cleaner).to be_kind_of(Transformers::Cleaners::Cleaner)
+    expect(cleaner).to be_a(Transformers::Cleaners::Cleaner)
   end
 
   it 'cleans rows' do

@@ -8,6 +8,6 @@ RSpec.describe Documents::Statements::N26 do
   let(:n26_statement) { described_class.new(filepath: statement) }
 
   it 'inherits from Statement' do
-    expect(n26_statement).to be_kind_of(Documents::Statements::Statement)
+    expect(n26_statement).to be_a(Documents::Statements::Statement)
   end
 end

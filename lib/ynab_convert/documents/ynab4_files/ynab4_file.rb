@@ -6,9 +6,9 @@ module Documents
     class YNAB4File
       attr_reader :csv_export_options
 
-      def initialize(institution_name:, format: :flows)
-        @format = format
-        @institution_name = institution_name
+      def initialize(options = {})
+        @format = options[:format] || :flows
+        @institution_name = options[:institution_name]
         @csv_export_options = {
           converters: %i[numeric date],
           force_quotes: true,

@@ -4,7 +4,7 @@ RSpec.describe APIClients::CurrencyAPI, :vcr do
   let(:currency_api) { described_class.new }
 
   it 'inherits from APIClient' do
-    expect(currency_api).to be_kind_of(APIClients::APIClient)
+    expect(currency_api).to be_a(APIClients::APIClient)
   end
 
   context 'with a valid date' do

@@ -12,7 +12,7 @@ module Documents
       # @param csv_import_options [CSV::DEFAULT_OPTIONS] options describing
       #   the particular CSV flavour (column separator, etc). Any
       #   CSV::DEFAULT_OPTIONS is valid.
-      def initialize(filepath:, csv_import_options: CSV::DEFAULT_OPTIONS)
+      def initialize(filepath:, csv_import_options: {})
         validate(filepath)
 
         default_options = CSV::DEFAULT_OPTIONS.merge(converters: %i[numeric

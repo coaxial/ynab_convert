@@ -4,6 +4,7 @@ require 'ynab_convert/version'
 require 'slop'
 require 'ynab_convert/logger'
 require 'core_extensions/string'
+require 'ynab_convert/processors'
 require 'byebug' if ENV['YNAB_CONVERT_DEBUG']
 
 # FIXME: The architecture in here is not the greatest... It should be
@@ -13,9 +14,9 @@ require 'byebug' if ENV['YNAB_CONVERT_DEBUG']
 module YnabConvert
   # Metadata about the gem
   class Metadata
-    def  short_desc
-      puts 'An utility to convert online banking CSV files to a format that ' \
-'can be imported into YNAB 4.'
+    def short_desc
+      puts 'A utility to convert online banking CSV files to a format that ' \
+           'can be imported into YNAB 4.'
     end
 
     def version
@@ -24,7 +25,7 @@ module YnabConvert
   end
 
   # Operations on the CSV file to convert
-  class File
+  class Converter
     include YnabLogger
 
     # @option opts [String] :file The filename or path to the file
@@ -33,14 +34,9 @@ module YnabConvert
     def initialize(opts)
       logger.debug opts.to_h
       @file = opts[:file]
-
-      begin
-        @processor = opts[:processor].new(
-          filepath: @file
-        )
-      rescue Errno::ENOENT
-        handle_file_not_found
-      end
+      @processor = opts[:processor].new(
+        filepath: @file
+      )
     end
 
     # Converts @file to YNAB4 format and writes it to disk
@@ -48,12 +44,6 @@ module YnabConvert
     def to_ynab!
       logger.debug "Processing `#{@file}' through `#{@processor.class.name}'"
       @processor.to_ynab!
-    end
-
-    private
-
-    def file_not_found_message
-      raise Errno::ENOENT, "File `#{@file}' not found or not accessible."
     end
   end
 
@@ -65,14 +55,14 @@ module YnabConvert
     def initialize
       @metadata = Metadata.new
       @options = parse_argv
-      return unless no_options_given
+      return unless no_options_given?
 
       show_usage
       exit
     end
 
     def start
-      @file = File.new opts
+      @file = Converter.new opts
       logger.debug "Using processor `#{@options[:institution]}' => #{processor}"
       @file.to_ynab!
     end
@@ -95,8 +85,8 @@ module YnabConvert
           puts @metadata.version
           exit
         end
-        o.string '-i', '--institution', 'name of the financial institution '\
- 'that generated the file to convert'
+        o.string '-i', '--institution', 'name of the financial institution ' \
+                                        'that generated the file to convert'
         o.string '-f', '--file', 'path to the csv file to convert'
       end
     end
@@ -124,7 +114,7 @@ module YnabConvert
       processor_class_name.split('::').inject(Object) { |o, c| o.const_get c }
     end
 
-    def no_options_given
+    def no_options_given?
       @options[:institution].nil? || @options[:file].nil?
     end
 
@@ -134,10 +124,10 @@ module YnabConvert
     end
 
     def show_unknown_institution_message
-      warn 'Could not find any processor for the institution '\
-        "`#{@options[:institution]}'. If it's not a typo, consider "\
-        'contributing a new processor (see https://github.com/coaxial/'\
-        'ynab_convert#contributing to get started).'
+      warn 'Could not find any processor for the institution ' \
+           "`#{@options[:institution]}'. If it's not a typo, consider " \
+           'contributing a new processor (see https://github.com/coaxial/' \
+           'ynab_convert#contributing to get started).'
     end
   end
 end

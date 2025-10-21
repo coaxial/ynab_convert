@@ -1,14 +1,14 @@
 ---
 # See https://github.com/rubocop/rubocop/blob/master/config/default.yml for all
 # options
-require:
+plugins:
   - rubocop-rake
   - rubocop-rspec
 
 AllCops:
   DisplayCopNames: true
   NewCops: enable
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.3
 
 Layout/LineLength:
   AllowHeredoc: true
@@ -22,7 +22,7 @@ Metrics/BlockLength:
   Exclude:
     - Guardfile
     - ynab_convert.gemspec
-    - 'spec/**/*_spec.rb'
+    - "spec/**/*_spec.rb"
 
 Metrics/MethodLength:
   Max: 25

@@ -5,7 +5,7 @@ RSpec.describe Transformers::Formatters::Formatter do
     formatter = described_class.new(date: [0], payee:
                                                       [1], memo: [2],
                                     amount: [3])
-    expect(formatter).to be_kind_of(described_class)
+    expect(formatter).to be_a(described_class)
   end
 
   context 'when Statement fields and YNAB4 fields match 1:1' do
@@ -15,7 +15,7 @@ RSpec.describe Transformers::Formatters::Formatter do
         "2022-03-10","Test Payee","","13.37"
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true }
-      CSV.parse(csv_statement, options)
+      CSV.parse(csv_statement, **options)
     end
 
     let(:formatter) do
@@ -38,7 +38,7 @@ RSpec.describe Transformers::Formatters::Formatter do
         "2022-03-10","Test","Payee","","13.37"
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true }
-      CSV.parse(csv_statement, options)
+      CSV.parse(csv_statement, **options)
     end
 
     let(:formatter) do
@@ -61,7 +61,7 @@ RSpec.describe Transformers::Formatters::Formatter do
         "2022-03-10","Test","Payee","13.37"
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true }
-      CSV.parse(csv_statement, options)
+      CSV.parse(csv_statement, **options)
     end
 
     let(:formatter) do
@@ -85,7 +85,7 @@ RSpec.describe Transformers::Formatters::Formatter do
         "2022-03-10","Test Credit","","","6.66"
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true }
-      CSV.parse(csv_statement, options)
+      CSV.parse(csv_statement, **options)
     end
     let(:expected) do
       [

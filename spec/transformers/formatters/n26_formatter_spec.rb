@@ -3,7 +3,7 @@
 RSpec.describe Transformers::Formatters::N26 do
   let(:statement) do
     options = { col_sep: ',', quote_char: '"', headers: true }
-    CSV.read('spec/fixtures/statements/n26_statement.csv', options)
+    CSV.read('spec/fixtures/statements/n26_statement.csv', **options)
   end
   let(:n26_formatter) { described_class.new }
   let(:formatted) do
@@ -14,7 +14,7 @@ RSpec.describe Transformers::Formatters::N26 do
   end
 
   it 'inherits from Formatters::Formatter' do
-    expect(n26_formatter).to be_kind_of(Transformers::Formatters::Formatter)
+    expect(n26_formatter).to be_a(Transformers::Formatters::Formatter)
   end
 
   it 'formats rows' do
