@@ -16,7 +16,7 @@ RSpec.describe Transformers::Enhancers::N26 do
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true, converters:
                   %i[numeric] }
-      CSV.parse(csv, options)
+      CSV.parse(csv, **options)
     end
     let(:enhanced) do
       [

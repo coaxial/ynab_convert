@@ -8,7 +8,7 @@ require:
 AllCops:
   DisplayCopNames: true
   NewCops: enable
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.3
 
 Layout/LineLength:
   AllowHeredoc: true

@@ -3,7 +3,7 @@
 RSpec.describe Transformers::Formatters::Example do
   let(:statement) do
     options = { col_sep: ';', quote_char: nil, headers: true }
-    CSV.read('spec/fixtures/statements/example_statement.csv', options)
+    CSV.read('spec/fixtures/statements/example_statement.csv', **options)
   end
   let(:formatter) { described_class.new }
   let(:formatted) do

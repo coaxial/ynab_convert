@@ -15,7 +15,7 @@ RSpec.describe Transformers::Formatters::Formatter do
         "2022-03-10","Test Payee","","13.37"
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true }
-      CSV.parse(csv_statement, options)
+      CSV.parse(csv_statement, **options)
     end
 
     let(:formatter) do
@@ -38,7 +38,7 @@ RSpec.describe Transformers::Formatters::Formatter do
         "2022-03-10","Test","Payee","","13.37"
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true }
-      CSV.parse(csv_statement, options)
+      CSV.parse(csv_statement, **options)
     end
 
     let(:formatter) do
@@ -61,7 +61,7 @@ RSpec.describe Transformers::Formatters::Formatter do
         "2022-03-10","Test","Payee","13.37"
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true }
-      CSV.parse(csv_statement, options)
+      CSV.parse(csv_statement, **options)
     end
 
     let(:formatter) do
@@ -85,7 +85,7 @@ RSpec.describe Transformers::Formatters::Formatter do
         "2022-03-10","Test Credit","","","6.66"
       CSV
       options = { col_sep: ',', quote_char: '"', headers: true }
-      CSV.parse(csv_statement, options)
+      CSV.parse(csv_statement, **options)
     end
     let(:expected) do
       [
